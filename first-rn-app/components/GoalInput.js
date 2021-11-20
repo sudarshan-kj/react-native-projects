@@ -4,6 +4,16 @@ import { StyleSheet, View, TextInput, Button, Modal } from "react-native";
 const GoalInput = ({ visible, onPressAddGoal, onPressCancelGoal }) => {
   const [enteredGoal, setEnteredGoal] = useState("");
 
+  const handleOnPressAddGoal = () => {
+    onPressAddGoal(enteredGoal);
+    setEnteredGoal("");
+  };
+
+  const handleOnPressCancelGoal = () => {
+    onPressCancelGoal();
+    setEnteredGoal("");
+  };
+
   const handleChangeText = (text) => {
     setEnteredGoal(text);
   };
@@ -18,12 +28,16 @@ const GoalInput = ({ visible, onPressAddGoal, onPressCancelGoal }) => {
           onChangeText={handleChangeText}
         />
         <View style={styles.buttonsContainer}>
-          <Button
-            title="Add"
-            color="black"
-            onPress={() => onPressAddGoal(enteredGoal)}
-          />
-          <Button title="Cancel" color="red" onPress={onPressCancelGoal} />
+          <View style={styles.actionButton}>
+            <Button title="Add" color="gray" onPress={handleOnPressAddGoal} />
+          </View>
+          <View style={styles.actionButton}>
+            <Button
+              title="Cancel"
+              color="red"
+              onPress={handleOnPressCancelGoal}
+            />
+          </View>
         </View>
       </View>
     </Modal>
@@ -32,23 +46,29 @@ const GoalInput = ({ visible, onPressAddGoal, onPressCancelGoal }) => {
 
 const styles = StyleSheet.create({
   inputContainer: {
-    alignItems: "center",
-    justifyContent: "space-between",
+    flex: 1,
+    justifyContent: "center",
     padding: 30,
+    backgroundColor: "black",
   },
   input: {
-    padding: 20,
+    paddingBottom: 10,
     borderBottomColor: "gray",
     borderBottomWidth: 1,
     marginBottom: 20,
-    fontSize: 40,
-    color: "black",
-    flex: 1,
-    marginRight: 30,
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "white",
+    width: "100%",
   },
   buttonsContainer: {
+    width: "100%",
     flexDirection: "row",
     justifyContent: "space-around",
+  },
+  actionButton: {
+    flex: 1,
+    margin: 10,
   },
 });
 

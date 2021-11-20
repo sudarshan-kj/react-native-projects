@@ -11,10 +11,10 @@ const GoalItem = ({ goal, onDeleteGoal }) => (
 
 const styles = StyleSheet.create({
   itemContainer: {
-    backgroundColor: "greenyellow",
+    backgroundColor: "gray",
     padding: 20,
     margin: 10,
-    borderRadius: 10,
+    borderRadius: 4,
   },
 });
 
